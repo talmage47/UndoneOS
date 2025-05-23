@@ -1,0 +1,145 @@
+UndoneOS Engineering Glossary
+
+Project: UndoneOS
+Document Number: 1
+Author: Talmage Gaisford
+Revision: 00
+Approved by: #
+Status: Milestone 5
+
+UndoneShell Commands:
+
+coredump
+  Displays the current state of the system, including registers, loaded programs, failed programs, and memory.
+
+errordump [program_name]
+  Prints error messages for the specified program or all programs if no name is provided.
+
+execute [programs...]
+  Loads and runs the specified programs.
+
+exit
+  Exits the UndoneShell.
+
+gantt
+  Outputs the Gantt chart for the system's processes.
+
+getpagefaults
+  Outputs information about page faults.
+
+getpagenumber
+  Displays the current page count in the system's memory configuration.
+
+getpagesize
+  Displays the current page size in the system's memory configuration.
+
+help
+  Displays a brief description of the UndoneShell.
+
+load [programs...]
+  Loads the specified programs into memory. Ensure the programs have the `.osx` extension and exist on the filesystem.
+
+osx_mac [file.asm] [loader_address] [-v]
+  Compiles an assembly file for macOS with an optional loader address and verbose flag.
+
+ps
+  Prints the current process status and information.
+
+pwd
+  Prints the current working directory.
+
+reboot
+  Reboots the operating system, resetting all states.
+
+run [programs...]
+  Executes the loaded programs.
+
+sc [shell_name]
+  Changes to a different shell. Valid options are `ConeShell` and `UndoneShell`.
+
+setRR [quantum1] [quantum2]
+  Configures the round-robin scheduler with two quantum values.
+
+setpagenumber [number]
+  Sets the system's page count.
+
+setpagesize [size]
+  Sets the system's page size.
+
+setsched [algorithm]
+  Sets the scheduling algorithm. Valid values are: `RR`, `FCFS`, `MFQ`.
+
+
+DEFINITIONS:
+
+VMOperators:
+
+    #Arithmetic
+    ADD = 16
+    SUB = 17
+    MUL = 18
+    DIV = 19
+
+    #Move Data
+    MOV = 1
+    MVI = 22
+    ADR = 0
+    STR = 2
+    STRB = 3
+    LDR = 4
+    LDRB = 5
+
+    #Branch
+    B = 7
+    BL = 21
+    BX = 6
+    BNE = 8
+    BGT = 9
+    BLT = 10
+    BEQ = 11
+
+    #Logical
+    CMP = 12
+    AND = 13
+    ORR = 14
+    EOR = 15
+
+    #Interrupts
+    SWI = 20
+
+SWI Operators:
+	First Byte: 
+		20 = SWI
+	Second Byte:
+		2 = Print Register 0
+			SWI <print register 0>
+			Suggested Usage: print <— <reg0>
+
+    INTERRUPT = 1
+    PRINT = 2
+    FORK = 3
+    SHAREDPUSH = 4
+    SHAREDPULL = 5
+
+PCB Status: 
+
+    NEW = 1
+    READY = 2
+    RUNNING = 3
+    WAITING = 4
+    TERMINATED = 5
+    FAILED = 6
+
+OS Schedules:
+
+    FCFS = 1
+    RR = 2
+    MFQ = 3
+
+Log Type:
+
+    LOG = 1
+    ERROR = 2
+    LOGSTEP = 3
+    ValueError = 4
+

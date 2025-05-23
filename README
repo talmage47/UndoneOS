@@ -1,0 +1,125 @@
+# UndoneOS
+
+UndoneOS is a Python-based simulation of an operating system kernel. It models core OS components such as memory, job scheduling, process control, and I/O management in a modular and extensible structure.
+
+## Project Overview
+
+UndoneOS is a virtual machine for excetuting osx (UVU not Apple) byte code files.
+
+This virtual machine has support for the following assembly commands:
+	ADD
+	SUB
+	MUL
+	DIV
+	MOV
+	MVI
+	SWI
+
+The goal of UndoneOS is to provide a simplified yet structured model of an OS, including:
+
+- Multi-level scheduling algorithms (e.g., FCFS, round-robin)
+- Process control via PCBs
+- Basic memory and page table management
+- Logging and debugging facilities
+- Command-line shell interface for interactive testing
+
+## Project Structure
+
+| File / Module         | Description |
+|-----------------------|-------------|
+| `UndoneOS.py`         | The main system kernel; initializes and connects all subsystems. |
+| `UndoneShell.py`      | A simple shell interface to run programs and interact with the OS. |
+| `startos.py`          | Entry point to boot and run the OS. |
+| `PCB.py`              | Defines the Process Control Block (PCB) and its properties (ID, state, program counter, etc.). |
+| `Logger.py`           | Handles structured logging and error tracking. |
+| `LogType.py`          | Enumerates different types of log messages (e.g., error, warning, info). |
+| `Memory.py`           | Simulates physical memory and basic memory operations. |
+| `PageTable.py`        | Implements a simple page table for virtual memory management. |
+| `MachineSpec.py`      | Holds configuration constants such as memory size, number of registers, and quantum settings. |
+| `Clock.py`            | Provides timing functions and a system clock for scheduling and stats. |
+| `Queue.py`            | A generic queue implementation, used for job queues and scheduling. |
+| `QueueController.py`  | Manages different types of scheduling queues and policies. |
+| `OSSchedules.py`      | Contains different scheduling algorithms. |
+| `PCBStatus.py`        | Enumerates PCB states (e.g., READY, WAITING, RUNNING). |
+| `SharedMemory.py`     | Handles memory shared between processes or system modules. |
+| `VMOperator.py`       | Supports VM-related tasks (paging, address translation etc.). |
+
+## Features
+
+- Configurable scheduling with multiple ready queues
+- First-Come-First-Serve (FCFS), Round Robin, and MFQ scheduling
+- Full logging with verbosity settings
+- Program management (success/failure tracking)
+- Shell-based interaction
+- Virtual memory simulation with basic paging
+
+## Installation
+	UndoneOS is operated by placing all python files in the same directory and running following command:
+		startos
+	This command will start a shell for operating the virtual machine. Shell commands can be seen below
+
+## Commands
+
+coredump
+  Displays the current state of the system, including registers, loaded programs, failed programs, and memory.
+
+errordump [program_name]
+  Prints error messages for the specified program or all programs if no name is provided.
+
+execute [programs...]
+  Loads and runs the specified programs.
+
+exit
+  Exits the UndoneShell.
+
+gantt
+  Outputs the Gantt chart for the system's processes.
+
+getpagefaults
+  Outputs information about page faults.
+
+getpagenumber
+  Displays the current page count in the system's memory configuration.
+
+getpagesize
+  Displays the current page size in the system's memory configuration.
+
+help
+  Displays a brief description of the UndoneShell.
+
+load [programs...]
+  Loads the specified programs into memory. Ensure the programs have the `.osx` extension and exist on the filesystem.
+
+osx_mac [file.asm] [loader_address] [-v]
+  Compiles an assembly file for macOS with an optional loader address and verbose flag.
+
+ps
+  Prints the current process status and information.
+
+pwd
+  Prints the current working directory.
+
+reboot
+  Reboots the operating system, resetting all states.
+
+run [programs...]
+  Executes the loaded programs.
+
+sc [shell_name]
+  Changes to a different shell. Valid options are `ConeShell` and `UndoneShell`.
+
+setRR [quantum1] [quantum2]
+  Configures the round-robin scheduler with two quantum values.
+
+setpagenumber [number]
+  Sets the system's page count.
+
+setpagesize [size]
+  Sets the system's page size.
+
+setsched [algorithm]
+  Sets the scheduling algorithm. Valid values are: `RR`, `FCFS`, `MFQ`.
+
+## Copywrite and License 
+	Copywrite (C) 2025 Talmage Gaisford 07.cap-inducer@icloud.com
+	License: MIT/Expat License
